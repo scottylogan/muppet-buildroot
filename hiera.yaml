@@ -8,6 +8,8 @@ defaults:
   data_hash: yaml_data
 
 hierarchy:
+  - name: "Packer Build Name"
+    path: "%{packer_build_name}.yaml"
   - name: "OS Family"
     path: "%{os.family}.yaml"
   - name: "Common"

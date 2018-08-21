@@ -1,0 +1,5 @@
+# data/ami.yaml
+# defaults for AMI builds
+# ---
+buildroot::packages::install:
+  - cloud-init
