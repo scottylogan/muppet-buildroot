@@ -1,6 +1,6 @@
 {
   "name":         "muppet-buildroot",
-  "version":      "0.0.2",
+  "version":      "0.0.3",
   "author":       "Scotty Logan <scotty@catbert.net>",
   "summary":      "Install buildroot dependencies",
   "license":      "MIT",
