@@ -1,0 +1,11 @@
+# data/Debian.yaml
+# generic defaults for Debian-based systems
+---
+buildroot::packages::package_type: apt
+buildroot::packages::install: 
+  - build-essential
+  - libncurses5
+  - python-pip
+  - strace
+  - zlib1g-dev
+  - xz-utils

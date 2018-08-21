@@ -1,0 +1,38 @@
+# data/common.yaml
+# really generic defaults
+---
+buildroot::packages::install:
+  - autoconf
+  - automake
+  - bash
+  - bc
+  - binutils
+  - bzip2
+  - cpio
+  - file
+  - findutils
+  - g++
+  - gcc
+  - graphviz
+  - gzip
+  - git
+  - make
+  - patch
+  - perl
+  - python
+  - python-matplotlib
+  - rsync
+  - sed
+  - tar
+  - wget
+  - unzip
+base::packages::pip:
+  - awscli
+buildroot::packages::uninstall: []
+lookup_options:
+  buildroot::packages::install:
+    merge: deep
+  buildroot::packages::uninstall:
+    merge: deep
+  buildroot::packages::pip:
+    merge: deep

@@ -1,0 +1,29 @@
+{
+  "name":         "muppet-buildroot",
+  "version":      "0.0.1",
+  "author":       "Scotty Logan <scotty@catbert.net>",
+  "summary":      "Install buildroot dependencies",
+  "license":      "MIT",
+  "source":       "https://github.com/scottylogan/puppet-buildroot.git",
+  "project_page": "https://github.com/scottylogan/puppet-buildroot",
+  "issues_url":   "https://github.com/scottylogan/puppet-buildroot/issues",
+
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemmajrelease": [ "9", "10" ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemmajrelease": [ "16.04", "18.04" ]
+    }
+  ],
+
+  "requirements": [
+    { "name": "puppet", "version_requirement": ">= 5.x" }
+  ],
+
+  "dependencies": [
+    { "name": "puppetlabs-stdlib",    "version_requirement": ">= 4.25.0" }
+  ]
+}
