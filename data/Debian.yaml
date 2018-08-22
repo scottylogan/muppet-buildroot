@@ -5,7 +5,6 @@ buildroot::packages::package_type: apt
 buildroot::packages::install: 
   - build-essential
   - libncurses5
-  - python-pip
   - strace
   - zlib1g-dev
   - xz-utils

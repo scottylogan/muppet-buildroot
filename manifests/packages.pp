@@ -17,8 +17,6 @@ class buildroot::packages (
   $install,
   $uninstall,
   $pip,
-  $easy_install_pkg,
-  $easy_install,
 ){
 
   include stdlib
@@ -43,17 +41,22 @@ class buildroot::packages (
 
   # python packages via pip
   if (! empty($pip)) {
-    # if easy_install is set, install the package that installs it
-    # then use easy_install to install pip
-    if ($easy_install) {
-      ensure_packages([$easy_install_pkg], { ensure => present })
-      -> exec { 'easy_install_pip':
-        command => "${easy_install} pip",
-      }
+
+    $pip_pkgs = $facts['os']['family'] ? {
+      'Debian' => [ 'python-pip' ],
+      'RedHat' => [ 'python-setuptools' ],
     }
-    -> ensure_packages ($pip, {
-      ensure   => present,
-      provider => 'pip',
-    })
+
+    $pip_install = $facts['os']['family'] ? {
+      'RedHat' => '/usr/bin/easy_install pip',
+      default  => '/bin/true',
+    }
+
+    ensure_packages($pip_pkgs, { ensure => present })
+    -> exec { 'pip_install':
+      command => $pip_install,
+      unless  => 'type -p pip >/dev/null 2>&1'
+    }
+    -> ensure_packages ($pip, { ensure => present, provider => 'pip' })
   }
 }

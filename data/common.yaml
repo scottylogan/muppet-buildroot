@@ -1,8 +1,6 @@
 # data/common.yaml
 # really generic defaults
 ---
-buildroot::packages::easy_install: false
-buildroot::packages::easy_install_pkg: false
 buildroot::packages::install:
   - autoconf
   - automake
