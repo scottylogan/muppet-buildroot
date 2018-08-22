@@ -40,15 +40,6 @@ class buildroot::packages (
   ensure_packages($only_install, { ensure => present })
   ensure_packages($uninstall, { ensure => absent })
 
-  file { '/etc/sudoers.d/buildroot':
-    ensure  => file,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0440',
-    source  => "puppet:///modules/${module_name}/etc/sudoers",
-    require => Package['sudo'],
-  }
-
   if (! empty($pip)) {
     ensure_packages(['python-setuptools'], { ensure => present })
 
