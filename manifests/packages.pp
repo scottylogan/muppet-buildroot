@@ -6,7 +6,7 @@
 #
 # === Authors
 #
-# Scotty Logan <scotty@catbert.net>
+# Scotty Logan <scotty@scottylogan.com>
 #
 # === Copyright
 #
