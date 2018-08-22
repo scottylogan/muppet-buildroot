@@ -13,11 +13,12 @@
 # Copyright (c) 2018 Scotty Logan
 #
 class buildroot::packages (
+  $package_type,
   $install,
   $uninstall,
   $pip,
+  $easy_install_pkg,
   $easy_install,
-  $package_type,
 ){
 
   include stdlib
@@ -40,15 +41,18 @@ class buildroot::packages (
   ensure_packages($only_install, { ensure => present })
   ensure_packages($uninstall, { ensure => absent })
 
+  # python packages via pip
   if (! empty($pip)) {
-    ensure_packages(['python-setuptools'], { ensure => present })
-
-    exec { 'easy_install_pip':
-      command => "${easy_install} pip",
-      require => Package['python-setuptools'],
+    # if easy_install is set, install the package that installs it
+    # then use easy_install to install pip
+    if ($easy_install) {
+      ensure_packages([$easy_install_pkg], { ensure => present })
+      exec { 'easy_install_pip':
+        command => "${easy_install} pip",
+        require => Package[$easy_install_pkg],
+      }
     }
 
-    # python packages via pip
     ensure_packages ($pip, {
       ensure   => present,
       provider => 'pip',
