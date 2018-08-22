@@ -29,7 +29,7 @@ class buildroot::packages (
     before => Stage['main'],
   }
 
-  class { "base::${package_type}":
+  class { "buildroot::${package_type}":
     stage   => 'pre-packages',
   }
 
