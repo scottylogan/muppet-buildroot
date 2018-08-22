@@ -53,10 +53,17 @@ class buildroot::packages (
     }
 
     ensure_packages($pip_pkgs, { ensure => present })
-    -> exec { 'pip_install':
+
+    exec { 'pip_install':
       command => $pip_install,
-      unless  => 'type -p pip >/dev/null 2>&1'
+      require => Package[$pip_pkgs],
     }
-    -> ensure_packages ($pip, { ensure => present, provider => 'pip' })
+
+    ensure_packages ($pip, {
+      ensure => present,
+      provider => 'pip',
+      require => Exec['pip_install'],
+    })
+
   }
 }
