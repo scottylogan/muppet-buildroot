@@ -6,9 +6,7 @@
 #
 # Scotty Logan <scotty@scottylogan.com>
 #
-class buildroot::apt(
-  $sources = [ ],
-) {
+class buildroot::apt {
 
   package {
     [
@@ -16,17 +14,6 @@ class buildroot::apt(
       'apt-transport-https',
     ]:
     ensure => latest,
-  }
-
-  class { 'apt':
-    update  => {
-      frequency => 'daily',
-    },
-    purge   => {
-      'sources.list'   => true,
-      'sources.list.d' => false,
-    },
-    sources => $sources,
   }
 
   # force apt-get update before package installation
