@@ -51,11 +51,9 @@ class buildroot::packages (
         command => "${easy_install} pip",
       }
     }
-
-    ensure_packages ($pip, {
+    -> ensure_packages ($pip, {
       ensure   => present,
       provider => 'pip',
-      require  => Exec['easy_install_pip'],
     })
   }
 }
