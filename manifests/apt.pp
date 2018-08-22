@@ -16,6 +16,16 @@ class buildroot::apt {
     ensure => latest,
   }
 
+  class { 'apt':
+    update  => {
+      frequency => 'daily',
+    },
+    purge   => {
+      'sources.list'   => true,
+      'sources.list.d' => false,
+    }
+  }
+
   # force apt-get update before package installation
   Class['apt::update'] -> Package<| |>
 
