@@ -17,10 +17,10 @@ class buildroot::apt {
   }
 
   class { 'apt':
-    update  => {
+    update => {
       frequency => 'daily',
     },
-    purge   => {
+    purge  => {
       'sources.list'   => true,
       'sources.list.d' => false,
     }

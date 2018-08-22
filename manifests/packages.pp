@@ -47,9 +47,8 @@ class buildroot::packages (
     # then use easy_install to install pip
     if ($easy_install) {
       ensure_packages([$easy_install_pkg], { ensure => present })
-      exec { 'easy_install_pip':
+      -> exec { 'easy_install_pip':
         command => "${easy_install} pip",
-        require => Package[$easy_install_pkg],
       }
     }
 
